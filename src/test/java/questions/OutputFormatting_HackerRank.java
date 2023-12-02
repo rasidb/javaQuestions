@@ -1,33 +1,36 @@
 package questions;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class OutputFormatting_HackerRank {
     public static void main(String[] args) {
-        Scanner scanner =new Scanner(System.in);
-
+        Scanner scanner = new Scanner(System.in);
+        String isim;
+        int puan ;
+        String formatlıPuan;
+        String resultString;
+        List<String> resultList=new ArrayList<>();
         for (int i = 0; i < 3; i++) {
-            String isim = scanner.next();
-            int puan =scanner.nextInt();
-            int puanGerekenBosluk;
-            String resultPuan = null;
-            if (puan<10){
-                resultPuan="00"+puan;
+            isim = scanner.next();
+            puan = scanner.nextInt();
+            if (10 <= puan && puan < 100) {
+                formatlıPuan = "0" + puan;
+            } else if (puan < 10) {
+                formatlıPuan = "00" + puan;
+            } else {
+                formatlıPuan = String.valueOf(puan);
             }
-            if (puan>9&&puan<100){
-              resultPuan="0"+puan;
+            while (isim.length() < 15) {
+                isim = isim + " ";
             }
-            if (puan>100){
-                resultPuan=puan+"";
-            }
-            int atılacakBosluk=15-(isim.length());
-            String space=" ";
-            String result="";
-            for (int j = 0; j < atılacakBosluk; j++) {
-            result=isim+" ";
-            }
-            result=result+resultPuan;
-            System.out.println(result);
+            resultString = isim + formatlıPuan;
+            resultList.add(resultString);
+        }
+        scanner.close();
+        for (String each : resultList) {
+            System.out.println(each);
         }
     }
 }
